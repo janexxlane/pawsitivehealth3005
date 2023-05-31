@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/Datum_Anzeige"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        android:text="Datum heute" />
+
+    <TextView
+        android:id="@+id/essenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Datum_Anzeige"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="50dp"
+        android:textStyle="bold"
+        android:text="Essen" />
+
+    <EditText
+        android:id="@+id/notesEssen"
+        android:layout_width="wrap_content"
+        android:layout_height="94dp"
+        android:layout_below="@id/essenText"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Notizen" />
+
+    <TextView
+        android:id="@+id/ausscheidungtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notesEssen"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:textStyle="bold"
+        android:text="Ausscheidung" />
+
+    <EditText
+        android:id="@+id/notesAusscheidung"
+        android:layout_width="wrap_content"
+        android:layout_height="94dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/ausscheidungtext"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="Notizen" />
+
+    <TextView
+        android:id="@+id/medikamentetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notesAusscheidung"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="70dp"
+        android:textStyle="bold"
+        android:text="Medikamente" />
+
+    <TextView
+        android:id="@+id/spaziergangtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/medikamentetext"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="70dp"
+        android:textStyle="bold"
+        android:text="Spaziergang" />
+
+    <TextView
+        android:id="@+id/arztbesuchtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spaziergangtext"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="70dp"
+        android:textStyle="bold"
+        android:text="Arztbesuch" />
+
+    <ImageButton
+        android:id="@+id/imageButtonEssen"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@id/notesEssen"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="33dp"
+        android:layout_toEndOf="@id/notesEssen"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <ImageButton
+        android:id="@+id/imageButtonAusscheidung"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@id/notesAusscheidung"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="28dp"
+        android:layout_toEndOf="@id/notesAusscheidung"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <ImageView
+        android:id="@+id/FotoEssen"
+        android:layout_width="101dp"
+        android:layout_height="94dp"
+        android:layout_alignTop="@id/imageButtonEssen"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="-37dp"
+        android:layout_toEndOf="@id/imageButtonEssen"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+    <ImageView
+        android:id="@+id/FotoAusscheidung"
+        android:layout_width="101dp"
+        android:layout_height="94dp"
+        android:layout_alignTop="@id/imageButtonAusscheidung"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="-37dp"
+        android:layout_toEndOf="@id/imageButtonAusscheidung"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <Button
+        android:id="@+id/MedikamenteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FotoAusscheidung"
+        android:layout_alignTop="@id/medikamentetext"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="-21dp"
+        android:layout_toEndOf="@id/imageButtonAusscheidung"
+        android:text="Neu" />
+
+    <Button
+        android:id="@+id/SpaziergangButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MedikamenteButton"
+        android:layout_alignTop="@id/spaziergangtext"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="-21dp"
+        android:layout_toEndOf="@id/imageButtonAusscheidung"
+        android:text="Neu" />
+
+    <Button
+        android:id="@+id/ArztterminButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SpaziergangButton"
+        android:layout_alignTop="@id/arztbesuchtext"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="-21dp"
+        android:layout_toEndOf="@id/imageButtonAusscheidung"
+        android:text="Neu" />
+
+    <Button
+        android:id="@+id/speichernButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speichern"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
