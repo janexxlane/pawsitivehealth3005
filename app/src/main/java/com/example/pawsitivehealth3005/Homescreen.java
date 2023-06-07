@@ -14,17 +14,12 @@ import android.widget.CalendarView;
 public class Homescreen extends AppCompatActivity {
 
     /*ÜBERSICHT
-      ROOMDB
-      DailyEintrag = Entitätsklasse
-      EintragDAO = DAO Interface
-      MeineDatabase = Datenbankklasse
-
+    
 
 
       //Baustellen:
-      TOOLBAR/ Menü
-      Calendar View ???
-      Performancee issues
+      TOOLBAR/ Menü DONE?
+      Das Datum mit den Tabellen mitübergeben und als Primary Key nehmen ???
       LOG/ Bearbeitungsfunktion
 
 */
@@ -54,13 +49,13 @@ public class Homescreen extends AppCompatActivity {
 
                 }
 
-                //String speicherDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
+                String speicherDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
                 Button button1 = findViewById(R.id.hinzu);
                 button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent myintent = new Intent(Homescreen.this, com.example.pawsitivehealth3005.Datum_heute.class);
-                        //   myintent.putExtra("Datum", speicherDate);
+                        myintent.putExtra("Datum", speicherDate);
                         startActivity(myintent);
                     }
                 });

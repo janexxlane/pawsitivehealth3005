@@ -171,4 +171,12 @@
         android:text="Speichern"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="683dp"
+        android:text="Button" />
 </RelativeLayout>
