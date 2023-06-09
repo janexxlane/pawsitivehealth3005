@@ -43,6 +43,7 @@ public class neuerArzttermin extends AppCompatActivity {
         backBtn.setOnClickListener(view -> {
 
             Intent myintent = new Intent(this, Datum_heute.class);
+            startActivity(myintent);
         });
 
     } }
