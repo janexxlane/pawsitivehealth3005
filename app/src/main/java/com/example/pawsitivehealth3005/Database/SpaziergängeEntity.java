@@ -8,7 +8,7 @@ public class SpaziergängeEntity {
 
 
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String spaziergangName;
     private String stepCount;

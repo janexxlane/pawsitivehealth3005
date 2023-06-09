@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MotionEvent;
@@ -29,14 +30,16 @@ import com.example.pawsitivehealth3005.Database.StammdatenDatabase;
 import com.example.pawsitivehealth3005.Database.StammdatenEntity;
 
 import java.io.ByteArrayOutputStream;
+import java.net.URI;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Datum_heute extends AppCompatActivity {
     private ActivityResultLauncher<Intent> cameraLauncher;
-    private byte[] imageBytesEssen;
-    private byte[] imageBytesAusscheidung;
+    private static final int CAMERA_PERMISSION_REQUEST_CODE=1;
 
+    private byte[] imageBytesAusscheidung;
+    private byte[] imageBytesEssen;
     private ActivityResultLauncher<Intent> cameraLauncherEssen;
     private ActivityResultLauncher<Intent> cameraLauncherAusscheidung;
 
@@ -59,50 +62,45 @@ public class Datum_heute extends AppCompatActivity {
         executorService = Executors.newSingleThreadExecutor();
         databaseOperations = new DatabaseOperations();
 
+
+
         // Camera for Essen
         ImageView imageViewEssen = findViewById(R.id.FotoEssen);
         ImageButton buttonEssen = findViewById(R.id.imageButtonEssen);
 
-        cameraLauncherEssen = registerForActivityResult(
+        ActivityResultLauncher<Intent> cameraLauncherEssen = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
                         Intent data = result.getData();
-                        if (data != null && data.getData() != null) {
+                        if (data != null) {
+                            Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
                             executorService.execute(() -> {
                                 try {
-                                    Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                     imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                                     imageBytesEssen = baos.toByteArray();
-                                    runOnUiThread(() -> imageViewEssen.setImageBitmap(imageBitmap));
+                                    runOnUiThread(() -> imageViewEssen.setImageBitmap(imageBitmap)); // Aktualisierung im UI-Thread
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             });
                         } else {
-                            Toast.makeText(getApplicationContext(), "Keine Kamera-App gefunden.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Es wurde kein Bild aufgenommen.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Keine Kamera-App gefunden.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Fehler beim Aufnehmen des Bildes.", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-        // Man braucht einen setOnTouchListener für den ImageButton ( mit einem normalen Button und Onclicklistener gehts aber auch nicht)
-        buttonEssen.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Der ImageButton wurde gedrückt
-                    Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if (openCamera.resolveActivity(getPackageManager()) != null) {
-                        cameraLauncherEssen.launch(openCamera);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Button Fehler.", Toast.LENGTH_SHORT).show();
-                    }
-                    return true;
-                }
-                return false;
+
+        buttonEssen.setOnClickListener(view -> {
+            Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (openCamera.resolveActivity(getPackageManager()) != null) {
+                cameraLauncherEssen.launch(openCamera);
+            } else {
+                Toast.makeText(getApplicationContext(), "Es wurde keine Kamera-App gefunden.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -152,6 +150,8 @@ public class Datum_heute extends AppCompatActivity {
                 return false;
             }
         });
+
+
 
         // NEUE MEDIS/ TERMINE/ SPAZIERGÄNGE BUTTONS
         Button buttonMedis = findViewById(R.id.MedikamenteButton);
@@ -210,7 +210,7 @@ public class Datum_heute extends AppCompatActivity {
             stammdatenEntity.setNotizenAusscheidung(notizenAusscheidung);
             stammdatenEntity.setNotizenEssen(notizenEssen);
             stammdatenEntity.setDatumAnzeigeString(DatumAnzeigeString);
-            stammdatenEntity.setImageBytesE(imageBytesEssen);
+            //stammdatenEntity.setImageBytesE(imageBytesEssen);
             stammdatenEntity.setImageBytesA(imageBytesAusscheidung);
 
             //Aus Medis

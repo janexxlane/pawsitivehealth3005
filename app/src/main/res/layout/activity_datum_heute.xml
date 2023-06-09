@@ -30,8 +30,8 @@
 
     <EditText
         android:id="@+id/notesEssen"
-        android:layout_width="wrap_content"
-        android:layout_height="94dp"
+        android:layout_width="173dp"
+        android:layout_height="75dp"
         android:layout_below="@id/essenText"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
@@ -51,13 +51,13 @@
 
     <EditText
         android:id="@+id/notesAusscheidung"
-        android:layout_width="wrap_content"
-        android:layout_height="94dp"
+        android:layout_width="172dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/ausscheidungtext"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_below="@id/ausscheidungtext"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
         android:text="Notizen" />
 
     <TextView
@@ -99,7 +99,7 @@
         android:layout_marginTop="33dp"
         android:layout_toEndOf="@id/notesEssen"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/camera" />
 
     <ImageButton
         android:id="@+id/imageButtonAusscheidung"
@@ -110,26 +110,27 @@
         android:layout_marginTop="28dp"
         android:layout_toEndOf="@id/notesAusscheidung"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/camera" />
 
     <ImageView
         android:id="@+id/FotoEssen"
-        android:layout_width="101dp"
-        android:layout_height="94dp"
+        android:layout_width="144dp"
+        android:layout_height="113dp"
         android:layout_alignTop="@id/imageButtonEssen"
         android:layout_marginStart="19dp"
         android:layout_marginTop="-37dp"
         android:layout_toEndOf="@id/imageButtonEssen"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/camera" />
+
     <ImageView
         android:id="@+id/FotoAusscheidung"
-        android:layout_width="101dp"
-        android:layout_height="94dp"
+        android:layout_width="150dp"
+        android:layout_height="117dp"
         android:layout_alignTop="@id/imageButtonAusscheidung"
         android:layout_marginStart="19dp"
         android:layout_marginTop="-37dp"
         android:layout_toEndOf="@id/imageButtonAusscheidung"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/camera" />
 
     <Button
         android:id="@+id/MedikamenteButton"

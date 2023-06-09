@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.pawsitivehealth3005.Datum_heute;
 
 
-@Database(entities = {StammdatenEntity.class}, version = 1)
+@Database(entities = {StammdatenEntity.class}, version = 2)
 public abstract class StammdatenDatabase extends RoomDatabase {
     private static StammdatenDatabase stammdatenDatabase;
 
